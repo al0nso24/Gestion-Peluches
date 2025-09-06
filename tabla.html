@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de peluches</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-xl-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla_Peluches"></tbody>
+                </table>
+                <h5>Total de compra: S/.<span id="total_Compra">0.00</span></h5>
+                <a class="btn btn-primary mt-5" href="index.html">Regresar</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        let lista = JSON.parse(localStorage.getItem("datos"))||[];
+        let fila = "";
+        let total = 0;
+        lista.forEach(pe => {
+            fila+=`<tr>
+                        <td>${pe.nombre}</td>
+                        <td>S/. ${pe.precio_Peluche}</td>
+                        <td>${pe.cantidad}</td>
+                        <td>S/. ${pe.subtotal}</td>
+                  </tr>`
+                  total+=pe.subtotal;
+        });
+        document.getElementById("total_Compra").innerHTML = total;
+        document.getElementById("tabla_Peluches").innerHTML = fila;
+    </script>
+</body>
+</html>
